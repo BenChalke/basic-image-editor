@@ -1,21 +1,20 @@
 <template>
   <div id="app">
     <Header/>
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <div id="home-hero">
+      <img src="../src/assets/home-hero.svg" alt="Home Hero" id="home-hero-img">
+    </div>
     <Footer/>
   </div>
 </template>
 
 <script>
 import Header from './components/main/Header.vue';
-// import HelloWorld from './components/HelloWorld.vue';
 import Footer from './components/main/Footer.vue';
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld,
     Header,
     Footer
   }
@@ -24,8 +23,13 @@ export default {
 
 <style>
 #app {
-  /* Global Styles */
   margin: 0;
   padding: 0;
+}
+div#home-hero{
+
+}
+img#home-hero-img{
+  width: 100%;
 }
 </style>

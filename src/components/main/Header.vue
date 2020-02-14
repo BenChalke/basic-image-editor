@@ -23,14 +23,17 @@ header#header{
     background-color: #7344C0;
     text-align: center;
     color: #ffffff;
-    padding: 10px;
+    padding: 20px;
 }
 p#header-title{
     margin: 0;
+    padding-bottom: 10px;
+    font-size: 15px;
     font-weight: 500;
 }
 p#header-subtitle{
     margin: 0;
+    font-size: 13px;
     font-weight: 400;
 }
 
