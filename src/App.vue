@@ -1,35 +1,50 @@
 <template>
   <div id="app">
-    <Header/>
-    <div id="home-hero">
-      <img src="../src/assets/home-hero.svg" alt="Home Hero" id="home-hero-img">
-    </div>
-    <Footer/>
+    <Header />
+    <HomeHero />
+    <Slider title="Brightness" :range=range  @updateRange="updateRange" />
+    <Slider title="Contrast" />
+    <Footer />
   </div>
 </template>
 
 <script>
-import Header from './components/main/Header.vue';
-import Footer from './components/main/Footer.vue';
+import Header from "../src/components/main/Header.vue";
+import HomeHero from "../src/components/homepage/HomeHero.vue";
+import Slider from "../src/components/homepage/Slider.vue";
+import Footer from "../src/components/main/Footer.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Header,
+    HomeHero,
+    Slider,
     Footer
+  },
+  data() {
+    return{
+      range: '100',
+    };
+  },
+  methods: {
+    updateRange(newVal){
+      this.range = newVal;
+      console.log('parent',this.range);
+    }
+  },
+  watch: {
+    bRange() {
+      console.log('parent',this.bRange);
+      this.range = this.bRange;
+    },
   }
-}
+};
 </script>
 
-<style>
+<style scoped>
 #app {
   margin: 0;
   padding: 0;
-}
-div#home-hero{
-
-}
-img#home-hero-img{
-  width: 100%;
 }
 </style>
