@@ -46,6 +46,7 @@ div#slider-div {
   box-shadow: 0 0 10px 0 #dddddd;
   display: block;
   text-align: center;
+  border-radius: 10px;
 }
 
 p#slider-title {

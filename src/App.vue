@@ -4,6 +4,7 @@
     <HomeHero />
     <Slider title="Brightness" :range=range  @updateRange="updateRange" />
     <Slider title="Contrast" />
+    <FileUploader />
     <Footer />
   </div>
 </template>
@@ -12,6 +13,7 @@
 import Header from "../src/components/main/Header.vue";
 import HomeHero from "../src/components/homepage/HomeHero.vue";
 import Slider from "../src/components/homepage/Slider.vue";
+import FileUploader from "../src/components/homepage/FileUploader.vue";
 import Footer from "../src/components/main/Footer.vue";
 
 export default {
@@ -20,6 +22,7 @@ export default {
     Header,
     HomeHero,
     Slider,
+    FileUploader,
     Footer
   },
   data() {
