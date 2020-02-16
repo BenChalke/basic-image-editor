@@ -27,6 +27,7 @@
         </div>
       </div>
     </form>
+    <img id="hiddenImg">
   </div>
 </template>
 
@@ -45,10 +46,15 @@ export default {
   mounted() {},
   methods: {
     async handleImg(event) {
+      console.log(event);
+      let getHiddenImg = document.getElementById("hiddenImg");
+      getHiddenImg.src = URL.createObjectURL(event.target.files[0]);
+
+
       this.$emit("updateImageLoaded", true);
       const canvas = document.getElementById("imageCanvas");
       let ctx = canvas.getContext("2d");
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.onload = function(event) {
         let img = new Image();
         img.onload = function() {
@@ -66,44 +72,39 @@ export default {
 
       console.log(event.srcElement.files[0].name);
       this.fileName = event.srcElement.files[0].name;
-    }
+    },
+    redrawImage(){
+      const canvas = document.getElementById("hiddenImg");
+      this.drawImage(canvas)
+    },
+    drawImage(image) {
+      const canvas = document.getElementById("imageCanvas");
+      let ctx = canvas.getContext("2d");
+      ctx.drawImage(image, 0, 0);
+    },
+    applyBrightness(data, brightness) {
+      for (let i = 0; i < data.length; i+= 4) {
+        data[i] += 255 * (brightness / 100);
+        data[i+1] += 255 * (brightness / 100);
+        data[i+2] += 255 * (brightness / 100);
+      }
+    },
   },
   watch: {
-    range(newVal, oldVal) {
+    range(newVal) {
       const canvas = document.getElementById("imageCanvas");
       let ctx = canvas.getContext("2d");
 
-      var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      var pixels = imageData.data;
+      let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
-      for (var i = 0; i < pixels.length; i += 4) {
-        var red = pixels[i]; // Extract original red color [0 to 255]. Similarly for green and blue below
-        var green = pixels[i + 1];
-        var blue = pixels[i + 2];
+      this.redrawImage();
 
-        if (newVal < oldVal) {
-          let brightenedRed = red - 1;
-          let brightenedGreen = green - 1;
-          let brightenedBlue = blue - 1;
-
-          pixels[i] = brightenedRed;
-          pixels[i + 1] = brightenedGreen;
-          pixels[i + 2] = brightenedBlue;
-        } else if (newVal > oldVal) {
-          let brightenedRed = red + 1;
-          let brightenedGreen = green + 1;
-          let brightenedBlue = blue + 1;
-
-          Math.max(0, Math.min(255, brightenedRed));
-          Math.max(0, Math.min(255, brightenedGreen));
-          Math.max(0, Math.min(255, brightenedBlue));
-
-          pixels[i] = brightenedRed;
-          pixels[i + 1] = brightenedGreen;
-          pixels[i + 2] = brightenedBlue;
-        }
-      }
-
+      imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      this.applyBrightness(
+        imageData.data,
+        parseInt(newVal, 10)
+      );
+      
       ctx.putImageData(imageData, 0, 0);
     }
   }
@@ -150,7 +151,7 @@ p#fileName {
   border-bottom: 1px solid #dcdedc;
   background-color: #f6f8fa;
   color: #25a95b;
-  width: 60%;
+  width: 50%;
   display: inline-block;
   position: absolute;
   border-top-right-radius: 5px;
@@ -197,6 +198,7 @@ div#arrow-up {
 div#canvas-div {
   flex: 1 0 100%;
 }
-canvas#imageCanvas {
+#hiddenImg{
+  display: none;
 }
 </style>

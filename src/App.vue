@@ -29,7 +29,7 @@ export default {
   },
   data() {
     return{
-      range: '127.5',
+      range: '0',
       imageLoaded: false,
     };
   },

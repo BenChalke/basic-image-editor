@@ -8,8 +8,8 @@
           type="range"
           :id="title"
           :name="title"
-          min="0"
-          max="255"
+          min="-100"
+          max="100"
           :class="title === 'Brightness' ? 'b-green' : 'c-blue'"
         />
       </form>
