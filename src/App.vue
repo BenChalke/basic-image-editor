@@ -3,10 +3,10 @@
     <Header />
     <HomeHero />
     <div v-if="imageLoaded">
-      <Slider title="Brightness" :range=range  @updateRange="updateRange" />
-      <Slider title="Contrast" />
+      <Slider title="Brightness" :BrRange=BrRange  @updateBrRange="updateBrRange"/>
+      <Slider title="Contrast" :CoRange=CoRange  @updateCoRange="updateCoRange"/>
     </div>
-    <FileUploader imageLoaded @updateImageLoaded="updateImageLoaded" :range=range />
+    <FileUploader imageLoaded @updateImageLoaded="updateImageLoaded" :BrRange=BrRange :CoRange=CoRange />
     <Footer />
   </div>
 </template>
@@ -29,18 +29,22 @@ export default {
   },
   data() {
     return{
-      range: '0',
+      BrRange: '0',
+      CoRange: '0',
       imageLoaded: false,
     };
   },
   methods: {
-    updateRange(newVal){
-      this.range = newVal;
-      console.log('parent',this.range);
+    updateBrRange(newVal){
+      this.BrRange = newVal;
+      console.log('parent', this.BrRange);
+    },
+    updateCoRange(newVal){
+      this.CoRange = newVal;
+      console.log('parent', this.CoRange);
     },
     updateImageLoaded(newVal){
       this.imageLoaded = newVal;
-      console.log('parent',this.range);
     }
   },
   watch: {

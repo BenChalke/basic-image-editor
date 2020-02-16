@@ -27,7 +27,7 @@
         </div>
       </div>
     </form>
-    <img id="hiddenImg">
+    <img id="hiddenImg" />
   </div>
 </template>
 
@@ -36,7 +36,8 @@ export default {
   name: "FileUploader",
   props: {
     imageLoaded: Boolean,
-    range: String
+    BrRange: String,
+    CoRange: String,
   },
   data() {
     return {
@@ -49,7 +50,6 @@ export default {
       console.log(event);
       let getHiddenImg = document.getElementById("hiddenImg");
       getHiddenImg.src = URL.createObjectURL(event.target.files[0]);
-
 
       this.$emit("updateImageLoaded", true);
       const canvas = document.getElementById("imageCanvas");
@@ -73,9 +73,9 @@ export default {
       console.log(event.srcElement.files[0].name);
       this.fileName = event.srcElement.files[0].name;
     },
-    redrawImage(){
+    redrawImage() {
       const canvas = document.getElementById("hiddenImg");
-      this.drawImage(canvas)
+      this.drawImage(canvas);
     },
     drawImage(image) {
       const canvas = document.getElementById("imageCanvas");
@@ -83,15 +83,33 @@ export default {
       ctx.drawImage(image, 0, 0);
     },
     applyBrightness(data, brightness) {
-      for (let i = 0; i < data.length; i+= 4) {
+      for (let i = 0; i < data.length; i += 4) {
         data[i] += 255 * (brightness / 100);
-        data[i+1] += 255 * (brightness / 100);
-        data[i+2] += 255 * (brightness / 100);
+        data[i + 1] += 255 * (brightness / 100);
+        data[i + 2] += 255 * (brightness / 100);
       }
+    },
+    applyContrast(data, contrast) {
+      var factor = (259.0 * (contrast + 255.0)) / (255.0 * (259.0 - contrast));
+
+      for (var i = 0; i < data.length; i+= 4) {
+        data[i] = this.truncateColor(factor * (data[i] - 128.0) + 128.0);
+        data[i+1] = this.truncateColor(factor * (data[i+1] - 128.0) + 128.0);
+        data[i+2] = this.truncateColor(factor * (data[i+2] - 128.0) + 128.0);
+      }
+    },
+    truncateColor(value) {
+      if (value < 0) {
+        value = 0;
+      } else if (value > 255) {
+        value = 255;
+      }
+
+      return value;
     },
   },
   watch: {
-    range(newVal) {
+    BrRange(newVal) {
       const canvas = document.getElementById("imageCanvas");
       let ctx = canvas.getContext("2d");
 
@@ -104,7 +122,20 @@ export default {
         imageData.data,
         parseInt(newVal, 10)
       );
-      
+
+      ctx.putImageData(imageData, 0, 0);
+    },
+    CoRange(newVal) {
+      const canvas = document.getElementById("imageCanvas");
+      let ctx = canvas.getContext("2d");
+
+      let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+      this.redrawImage();
+
+      imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      this.applyContrast(imageData.data, parseInt(newVal, 10));
+
       ctx.putImageData(imageData, 0, 0);
     }
   }
@@ -198,7 +229,7 @@ div#arrow-up {
 div#canvas-div {
   flex: 1 0 100%;
 }
-#hiddenImg{
+#hiddenImg {
   display: none;
 }
 </style>

@@ -4,13 +4,24 @@
     <div id="range-div">
       <form action="">
         <input
+          v-if="title === 'Brightness'"
           v-model="bRange"
           type="range"
           :id="title"
           :name="title"
           min="-100"
           max="100"
-          :class="title === 'Brightness' ? 'b-green' : 'c-blue'"
+          class="b-green"
+        />
+        <input
+          v-else-if="title === 'Contrast'"
+          v-model="cRange"
+          type="range"
+          :id="title"
+          :name="title"
+          min="-100"
+          max="100"
+          class="c-blue"
         />
       </form>
     </div>
@@ -23,17 +34,23 @@ export default {
   name: "Slider",
   props: {
     title: String,
-    range: String
+    BrRange: String,
+    CoRange: String,
   },
   data() {
     return {
-      bRange: this.range,
+      bRange: this.BrRange,
+      cRange: this.CoRange,
     };
   },
   watch: {
     bRange() {
       console.log(this.bRange);
-      this.$emit("updateRange", this.bRange);
+      this.$emit("updateBrRange", this.bRange);
+    },
+    cRange() {
+      console.log(this.cRange);
+      this.$emit("updateCoRange", this.cRange);
     }
   }
 };
