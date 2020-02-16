@@ -2,8 +2,10 @@
   <div id="app">
     <Header />
     <HomeHero />
-    <Slider title="Brightness" :range=range  @updateRange="updateRange" />
-    <Slider title="Contrast" />
+    <div>
+      <Slider title="Brightness" :range=range  @updateRange="updateRange" />
+      <Slider title="Contrast" />
+    </div>
     <FileUploader />
     <Footer />
   </div>
