@@ -2,11 +2,11 @@
   <div id="app">
     <Header />
     <HomeHero />
-    <div>
+    <div v-if="imageLoaded">
       <Slider title="Brightness" :range=range  @updateRange="updateRange" />
       <Slider title="Contrast" />
     </div>
-    <FileUploader />
+    <FileUploader imageLoaded @updateImageLoaded="updateImageLoaded" :range=range />
     <Footer />
   </div>
 </template>
@@ -29,20 +29,25 @@ export default {
   },
   data() {
     return{
-      range: '100',
+      range: '127.5',
+      imageLoaded: false,
     };
   },
   methods: {
     updateRange(newVal){
       this.range = newVal;
       console.log('parent',this.range);
+    },
+    updateImageLoaded(newVal){
+      this.imageLoaded = newVal;
+      console.log('parent',this.range);
     }
   },
   watch: {
-    bRange() {
-      console.log('parent',this.bRange);
-      this.range = this.bRange;
-    },
+    // bRange() {
+    //   console.log('parent',this.bRange);
+    //   this.range = this.bRange;
+    // },
   }
 };
 </script>
