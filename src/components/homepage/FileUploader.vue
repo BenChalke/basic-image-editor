@@ -27,7 +27,8 @@
         </div>
       </div>
     </form>
-    <img id="hiddenImg" />
+    <img id="hiddenImg" alt='hiddenImg'/>
+    <img id="newImage" alt='newImage'/>
   </div>
 </template>
 
@@ -37,11 +38,13 @@ export default {
   props: {
     imageLoaded: Boolean,
     BrRange: String,
-    CoRange: String,
+    CoRange: String
   },
   data() {
     return {
-      fileName: "No File"
+      fileName: "No File",
+      brChanged: false,
+      coChanged: false,
     };
   },
   mounted() {},
@@ -92,10 +95,14 @@ export default {
     applyContrast(data, contrast) {
       var factor = (259.0 * (contrast + 255.0)) / (255.0 * (259.0 - contrast));
 
-      for (var i = 0; i < data.length; i+= 4) {
+      for (var i = 0; i < data.length; i += 4) {
         data[i] = this.truncateColor(factor * (data[i] - 128.0) + 128.0);
-        data[i+1] = this.truncateColor(factor * (data[i+1] - 128.0) + 128.0);
-        data[i+2] = this.truncateColor(factor * (data[i+2] - 128.0) + 128.0);
+        data[i + 1] = this.truncateColor(
+          factor * (data[i + 1] - 128.0) + 128.0
+        );
+        data[i + 2] = this.truncateColor(
+          factor * (data[i + 2] - 128.0) + 128.0
+        );
       }
     },
     truncateColor(value) {
@@ -106,10 +113,20 @@ export default {
       }
 
       return value;
-    },
+    }
   },
   watch: {
     BrRange(newVal) {
+
+      this.brChanged = true;
+      console.log('brChanged', this.brChanged, 'coChanged', this.coChanged);
+      if(this.brChanged && this.coChanged) {
+        const getCanvas = document.getElementById("imageCanvas");
+        let setChangedImg = document.getElementById("hiddenImg");
+        setChangedImg.src = getCanvas.toDataURL();
+      }
+      this.coChanged = false;
+
       const canvas = document.getElementById("imageCanvas");
       let ctx = canvas.getContext("2d");
 
@@ -118,14 +135,24 @@ export default {
       this.redrawImage();
 
       imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-      this.applyBrightness(
-        imageData.data,
-        parseInt(newVal, 10)
-      );
+      this.applyBrightness(imageData.data, parseInt(newVal, 10));
 
       ctx.putImageData(imageData, 0, 0);
+
+      let setNewImage = document.getElementById("newImage");
+      setNewImage.src = canvas.toDataURL();
     },
     CoRange(newVal) {
+
+      this.coChanged = true;
+      console.log('brChanged', this.brChanged, 'coChanged', this.coChanged);
+      if(this.brChanged && this.coChanged) {
+        const getCanvas = document.getElementById("imageCanvas");
+        let setChangedImg = document.getElementById("hiddenImg");
+        setChangedImg.src = getCanvas.toDataURL();
+      }
+      this.brChanged = false;
+
       const canvas = document.getElementById("imageCanvas");
       let ctx = canvas.getContext("2d");
 
@@ -137,6 +164,9 @@ export default {
       this.applyContrast(imageData.data, parseInt(newVal, 10));
 
       ctx.putImageData(imageData, 0, 0);
+
+      let setNewImage = document.getElementById("newImage");
+      setNewImage.src = canvas.toDataURL();
     }
   }
 };
@@ -230,6 +260,9 @@ div#canvas-div {
   flex: 1 0 100%;
 }
 #hiddenImg {
+  display: none;
+}
+#newImage {
   display: none;
 }
 </style>

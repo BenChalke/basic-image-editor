@@ -35,12 +35,12 @@ export default {
   props: {
     title: String,
     BrRange: String,
-    CoRange: String,
+    CoRange: String
   },
   data() {
     return {
       bRange: this.BrRange,
-      cRange: this.CoRange,
+      cRange: this.CoRange
     };
   },
   watch: {
@@ -81,13 +81,13 @@ div#slider-div.c-blue {
   color: #4a90e2;
 }
 
-p#slide-text{
+p#slide-text {
   margin: 0;
   padding-bottom: 10px;
-  color: #000000!important;
+  color: #000000 !important;
 }
 /* Slider Styling */
-div#range-div{
+div#range-div {
   text-align: center;
 }
 

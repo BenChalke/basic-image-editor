@@ -3,10 +3,25 @@
     <Header />
     <HomeHero />
     <div v-if="imageLoaded">
-      <Slider title="Brightness" :BrRange=BrRange  @updateBrRange="updateBrRange"/>
-      <Slider title="Contrast" :CoRange=CoRange  @updateCoRange="updateCoRange"/>
+      <Slider
+        title="Brightness"
+        :BrRange="BrRange"
+        @updateBrRange="updateBrRange"
+      />
+      <Slider
+        title="Contrast"
+        :CoRange="CoRange"
+        @updateCoRange="updateCoRange"
+      />
     </div>
-    <FileUploader imageLoaded @updateImageLoaded="updateImageLoaded" :BrRange=BrRange :CoRange=CoRange />
+    <FileUploader
+      imageLoaded
+      @updateImageLoaded="updateImageLoaded"
+      @updateCoRange="updateCoRange"
+      @updateBrRange="updateBrRange"
+      :BrRange="BrRange"
+      :CoRange="CoRange"
+    />
     <Footer />
   </div>
 </template>
@@ -28,22 +43,22 @@ export default {
     Footer
   },
   data() {
-    return{
-      BrRange: '0',
-      CoRange: '0',
-      imageLoaded: false,
+    return {
+      BrRange: "0",
+      CoRange: "0",
+      imageLoaded: false
     };
   },
   methods: {
-    updateBrRange(newVal){
+    updateBrRange(newVal) {
       this.BrRange = newVal;
-      console.log('parent', this.BrRange);
+      console.log("parent", this.BrRange);
     },
-    updateCoRange(newVal){
+    updateCoRange(newVal) {
       this.CoRange = newVal;
-      console.log('parent', this.CoRange);
+      console.log("parent", this.CoRange);
     },
-    updateImageLoaded(newVal){
+    updateImageLoaded(newVal) {
       this.imageLoaded = newVal;
     }
   },
