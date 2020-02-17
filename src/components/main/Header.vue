@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       title: "Brightness & Contrast Developer Test",
-      subTitle: "14 Feb, 2020 - 17th Feb, 2020"
+      subTitle: "14th Feb, 2020 - 17th Feb, 2020"
     };
   }
 };

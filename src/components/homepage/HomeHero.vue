@@ -9,8 +9,8 @@
     </div>
     <div id="selfie">
       <img
-        src="../../assets/homer.jpg"
-        alt="Homer Simpson"
+        src="../../assets/ben.png"
+        alt="Ben Chalke"
         id="selfie-img"
       >
     </div>
