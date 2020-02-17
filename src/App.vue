@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <div id="app-content">
     <HomeHero />
     <div v-if="imageLoaded">
       <Slider
@@ -22,6 +23,7 @@
       :BrRange="BrRange"
       :CoRange="CoRange"
     />
+    </div>
     <Footer />
   </div>
 </template>
@@ -75,5 +77,15 @@ export default {
 #app {
   margin: 0;
   padding: 0;
+}
+@media screen and (min-width: 1024px) {
+  #app-content{
+    background: rgb(136,92,209);
+    background: -moz-linear-gradient(90deg, rgba(136,92,209,1) 0%, rgba(177,130,255,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(136,92,209,1) 0%, rgba(177,130,255,1) 100%);
+    background: linear-gradient(90deg, rgba(136,92,209,1) 0%, rgba(177,130,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#885cd1",endColorstr="#b182ff",GradientType=1);
+    padding: 30px 10%;
+  }
 }
 </style>

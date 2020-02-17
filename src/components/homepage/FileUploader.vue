@@ -49,8 +49,8 @@ export default {
   },
   mounted() {},
   methods: {
-    async handleImg(event) {
-      console.log(event);
+    handleImg(event) {
+      // console.log(event);
       let getHiddenImg = document.getElementById("hiddenImg");
       getHiddenImg.src = URL.createObjectURL(event.target.files[0]);
 
