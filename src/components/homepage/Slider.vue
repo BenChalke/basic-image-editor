@@ -187,4 +187,10 @@ input[type="range"]::-ms-thumb {
   -webkit-appearance: none;
   margin-top: 0px;
 }
+
+@media screen and (max-width: 390px) {
+  p#slide-text {
+    font-size: 0.8em;
+  }
+}
 </style>

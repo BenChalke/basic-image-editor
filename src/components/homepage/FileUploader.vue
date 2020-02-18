@@ -265,4 +265,43 @@ div#canvas-div {
 #newImage {
   display: none;
 }
+
+@media screen and (max-width: 435px) {
+  label#uploadBtn {
+    font-size: 0.8em;
+  }
+  p#nameLabel {
+    font-size: 0.8em
+  }
+  p#fileName {
+    font-size: 0.8em;
+  }
+}
+@media screen and (max-width: 390px) {
+  label#uploadBtn {
+    font-size: 0.7em;
+  }
+  p#nameLabel {
+    font-size: 0.7em
+  }
+  p#fileName {
+    font-size: 0.7em;
+    width: 40%
+  }
+}
+@media screen and (max-width: 350px) {
+  label#uploadBtn {
+    font-size: 0.6em;
+  }
+  p#nameLabel {
+    font-size: 0.6em
+  }
+  p#fileName {
+    font-size: 0.6em;
+    width: 40%
+  }
+  #input-div{
+    padding-left: 0!important;
+  }
+}
 </style>
