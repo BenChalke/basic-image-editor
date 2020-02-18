@@ -61,7 +61,7 @@ export default {
       reader.onload = function(event) {
         let img = new Image();
         img.onload = function() {
-          console.log("cw", canvas.width);
+          // console.log("cw", canvas.width);
           canvas.width = img.width;
           canvas.height = img.height;
           ctx.drawImage(img, 0, 0);
@@ -73,7 +73,7 @@ export default {
       canvas.style.width = "100%";
       canvas.width = canvas.offsetWidth;
 
-      console.log(event.srcElement.files[0].name);
+      // console.log(event.srcElement.files[0].name);
       this.fileName = event.srcElement.files[0].name;
     },
     redrawImage() {
@@ -119,7 +119,7 @@ export default {
     BrRange(newVal) {
 
       this.brChanged = true;
-      console.log('brChanged', this.brChanged, 'coChanged', this.coChanged);
+      // console.log('brChanged', this.brChanged, 'coChanged', this.coChanged);
       if(this.brChanged && this.coChanged) {
         const getCanvas = document.getElementById("imageCanvas");
         let setChangedImg = document.getElementById("hiddenImg");
@@ -145,7 +145,7 @@ export default {
     CoRange(newVal) {
 
       this.coChanged = true;
-      console.log('brChanged', this.brChanged, 'coChanged', this.coChanged);
+      // console.log('brChanged', this.brChanged, 'coChanged', this.coChanged);
       if(this.brChanged && this.coChanged) {
         const getCanvas = document.getElementById("imageCanvas");
         let setChangedImg = document.getElementById("hiddenImg");

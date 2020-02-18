@@ -45,11 +45,11 @@ export default {
   },
   watch: {
     bRange() {
-      console.log(this.bRange);
+      // console.log(this.bRange);
       this.$emit("updateBrRange", this.bRange);
     },
     cRange() {
-      console.log(this.cRange);
+      // console.log(this.cRange);
       this.$emit("updateCoRange", this.cRange);
     }
   }
@@ -137,6 +137,9 @@ input[type="range"]::-moz-range-track {
   cursor: pointer;
   border-radius: 10px;
 }
+input[type="range"]:focus::-moz-range-track {
+  outline: none;
+}
 input[type="range"].b-green::-moz-range-track {
   background: #25a95b;
 }
@@ -151,6 +154,9 @@ input[type="range"]::-moz-range-thumb {
   cursor: pointer;
   -webkit-appearance: none;
   margin-top: -10px;
+}
+input[type="range"]:focus::-moz-range-thumb {
+  outline: none;
 }
 input[type="range"].b-green::-moz-range-thumb {
   background: #25a95b;

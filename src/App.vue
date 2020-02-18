@@ -54,11 +54,11 @@ export default {
   methods: {
     updateBrRange(newVal) {
       this.BrRange = newVal;
-      console.log("parent", this.BrRange);
+      // console.log("parent", this.BrRange);
     },
     updateCoRange(newVal) {
       this.CoRange = newVal;
-      console.log("parent", this.CoRange);
+      // console.log("parent", this.CoRange);
     },
     updateImageLoaded(newVal) {
       this.imageLoaded = newVal;
