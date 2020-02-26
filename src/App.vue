@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header />
-    <div class="app-content">
+    <div class="app-content" v-if="this.windowWidth < 1024">
       <HomeHero />
       <div class="slider-uploader-div">
         <Slider
@@ -16,6 +16,31 @@
           @updateCoRange="updateCoRange"
           v-if="imageLoaded" 
         />
+        <FileUploader
+          imageLoaded
+          @updateImageLoaded="updateImageLoaded"
+          @updateCoRange="updateCoRange"
+          @updateBrRange="updateBrRange"
+          :BrRange="BrRange"
+          :CoRange="CoRange"
+        />
+      </div>
+    </div>
+    <div class="app-content" v-else>
+      <div class="home-hero-desktop">
+        <HomeHero />
+        <Slider
+          title="Brightness"
+          :BrRange="BrRange"
+          @updateBrRange="updateBrRange"
+        />
+        <Slider
+          title="Contrast"
+          :CoRange="CoRange"
+          @updateCoRange="updateCoRange"
+        />
+      </div>
+      <div class="slider-uploader-div">
         <FileUploader
           imageLoaded
           @updateImageLoaded="updateImageLoaded"
@@ -50,10 +75,23 @@ export default {
     return {
       BrRange: "0",
       CoRange: "0",
-      imageLoaded: false
+      imageLoaded: false,
+      windowWidth: false,
     };
   },
+  created() {
+    window.addEventListener('resize', this.handleResize)
+    this.handleResize();
+  },
+  // mounted() {
+  //   console.log(window.innerWidth);
+  //   this.windowWidth = window.innerWidth;
+  // },
   methods: {
+    handleResize(){
+      this.windowWidth = window.innerWidth;
+      console.log(this.windowWidth);
+    },
     updateBrRange(newVal) {
       this.BrRange = newVal;
     },

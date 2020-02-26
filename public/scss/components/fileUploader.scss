@@ -1,10 +1,10 @@
 .upload-div {
   flex: 1 1 300px;
-  margin: 20px;
   background-color: white;
   border-radius: 10px;
   border: 1px solid #dcdedc;
   overflow: hidden;
+  margin-top: 20px;
   // height: calc(100% - 40px);
 
   form {
@@ -17,8 +17,7 @@
       // height: 100%;
 
       .canvas-div {
-        width: 300px;
-        height: 300px;
+        width: 100%;
         margin-bottom: 80px;
         text-align: center;
         margin-left: auto;
@@ -145,30 +144,37 @@
   }
 }
 
-/* @media screen and (max-width: 390px) {
-    .uploadBtn {
-      font-size: 0.7em;
-    }
-    .nameLabel {
-      font-size: 0.7em
-    }
-    .fileName {
-      font-size: 0.7em;
-      width: 40%
-    }
+@media screen and (max-width: 390px) {
+  .uploadBtn {
+    font-size: 0.7em;
   }
-  @media screen and (max-width: 350px) {
-    .uploadBtn {
-      font-size: 0.6em;
-    }
-    .nameLabel {
-      font-size: 0.6em
-    }
-    .fileName {
-      font-size: 0.6em;
-      width: 40%
-    }
-    .input-div{
-      padding-left: 0!important;
-    }
-  } */
+  .nameLabel {
+    font-size: 0.7em;
+  }
+  .fileName {
+    font-size: 0.7em;
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .uploadBtn {
+    font-size: 0.6em;
+  }
+  .nameLabel {
+    font-size: 0.6em;
+  }
+  .fileName {
+    font-size: 0.6em;
+    width: 40%;
+  }
+  .input-div {
+    padding-left: 0 !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .upload-div {
+    margin-top: 0;
+  }
+}

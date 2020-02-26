@@ -53,6 +53,7 @@ export default {
       pixelRatio: '',
       scaledWidth: '',
       scaledHeight: '',
+      canvasSize: 400,
     };
   },
   mounted() {},
@@ -73,23 +74,23 @@ export default {
           let imageRatio = img.width / img.height;
           let offsetX = 0;
           let offsetY = 0;
-          let scaledWidth = 400;
-          let scaledHeight = 400;
+          let scaledWidth = 1000;
+          let scaledHeight = 1000;
           let pixelRatio = Math.round(window.devicePixelRatio || window.screen.deviceXDPI / window.screen.logicalXDPI);
           ctx.scale(pixelRatio, pixelRatio);
-          const previewRatio = 400 / 400;
+          const previewRatio = 1000 / 1000;
           
           if (imageRatio >= previewRatio) {
             scaledHeight = scaledWidth / imageRatio;
-            offsetY = (400 - scaledHeight) / 2;
+            offsetY = (1000 - scaledHeight) / 2;
           } else {
             scaledWidth = scaledHeight * imageRatio;
-            offsetX = (400 - scaledWidth) / 2;
+            offsetX = (1000 - scaledWidth) / 2;
           }
 
           canvas.style.background = 'none';
-          canvas.width = 400 * pixelRatio;
-          canvas.height = 400 * pixelRatio;
+          canvas.width = 1000 * pixelRatio;
+          canvas.height = 1000 * pixelRatio;
           ctx.setTransform(1, 0, 0, 1, 0, 0);
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 

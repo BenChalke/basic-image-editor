@@ -1,6 +1,15 @@
 #app {
   margin: 0;
   padding: 0;
+
+  .app-content{
+    max-width: 1300px;
+    margin: 0 auto;
+
+    .slider-uploader-div {
+      margin: 20px;
+    }
+  }
 }
 @media screen and (min-width: 1024px) {
   .app-content {
@@ -8,6 +17,11 @@
     align-items: stretch;
 
     .slider-uploader-div {
+      flex: 1 1 200px;
+      margin: 20px;
+    }
+
+    .home-hero-desktop{
       flex: 1 1 200px;
     }
   }
