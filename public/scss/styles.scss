@@ -1,0 +1,11 @@
+/* Common SCSS */
+@import 'common/variables.scss';
+@import 'common/generic.scss';
+
+/* Component SCSS */
+@import 'components/app.scss';
+@import 'components/header.scss';
+@import 'components/homeHero.scss';
+@import 'components/slider.scss';
+@import 'components/fileUploader.scss';
+@import 'components/footer.scss';

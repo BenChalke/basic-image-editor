@@ -1,7 +1,7 @@
 <template>
-  <header id="header">
-    <p id="header-title">{{ title }}</p>
-    <p id="header-subtitle">{{ subTitle }}</p>
+  <header class="header">
+    <p class="header-title">{{ title }}</p>
+    <p class="header-subtitle">{{ subTitle }}</p>
   </header>
 </template>
 
@@ -16,23 +16,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-header#header {
-  background-color: #7344c0;
-  text-align: center;
-  color: #ffffff;
-  padding: 20px;
-}
-p#header-title {
-  margin: 0;
-  padding-bottom: 10px;
-  font-size: 15px;
-  font-weight: 500;
-}
-p#header-subtitle {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 400;
-}
-</style>

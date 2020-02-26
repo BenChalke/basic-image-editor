@@ -1,0 +1,14 @@
+#app {
+  margin: 0;
+  padding: 0;
+}
+@media screen and (min-width: 1024px) {
+  .app-content {
+    display: flex;
+    align-items: stretch;
+
+    .slider-uploader-div {
+      flex: 1 1 200px;
+    }
+  }
+}
